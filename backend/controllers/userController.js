@@ -78,6 +78,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     throw new Error("User not Found");
   }
 });
+
 // ?@desc  UPDATE user profile
 // @route  PUT /api/users/profile
 // @access PRIVATE
@@ -107,4 +108,76 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, getUserProfile, registerUser, updateUserProfile };
+// ?@desc  Get all Users
+// @route  GET /api/users
+// @access PRIVATE/Admin
+
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+});
+
+// ?@desc  DELETE user
+// @route  DElETE /api/users/:id
+// @access PRIVATE/Admin
+
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (user) {
+    await user.remove();
+    return res.json({ message: "User removed" });
+  } else {
+    res.status(404);
+    throw new Error("User Not Found");
+  }
+});
+// ?@desc  GET user by id
+// @route  GET /api/users/:id
+// @access PRIVATE/Admin
+
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select("-password");
+  if (user) {
+    return res.json(user);
+  } else {
+    res.status(400);
+    throw new Error("User not Found");
+  }
+});
+
+// ?@desc  UPDATE user
+// @route  PUT /api/users/:id
+// @access PRIVATE/Admin
+
+const updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.isAdmin = req.body.isAdmin;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not Found");
+  }
+});
+
+export {
+  authUser,
+  getUserProfile,
+  registerUser,
+  updateUserProfile,
+  getUsers,
+  deleteUser,
+  getUserById,
+  updateUser,
+};

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
@@ -16,6 +16,14 @@ const PaymentScreen = ({ history }) => {
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
   const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.userLogin);
+
+  useEffect(() => {
+    if (!userInfo) {
+      history.push("/login");
+    }
+    // eslint-disable-next-line
+  }, [userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
