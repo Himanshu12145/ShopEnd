@@ -31,7 +31,7 @@ const HomeScreen = ({ match }) => {
           Go Back
         </Link>
       )}
-      <h1>Latest Products</h1>
+      <h1 className="mt-3 pt-3 text-white">Latest Products</h1>
       {loading ? (
         <Loader />
       ) : error ? (
