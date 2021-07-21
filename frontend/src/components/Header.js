@@ -19,11 +19,15 @@ const Header = () => {
     <header className="header">
       <Navbar
         bg="primary"
-        // style={{ background: "#18082F" }}
+        style={{
+          // background: "#18082F"
+          // border-bottom: 5px solid red;
+          borderBottom: "1px solid #18082F  ",
+        }}
         variant="dark"
         expand="lg"
         fixed="top"
-        className="py-3 "
+        className="py-3 border-top  "
         collapseOnSelect
       >
         <Container>
