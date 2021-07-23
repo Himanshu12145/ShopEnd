@@ -89,7 +89,7 @@ const UserListScreen = ({ history }) => {
                     to={`/admin/user/${user._id}/edit`}
                     className=" "
                   >
-                    <Button variant="light" className="btn m-2  ">
+                    <Button variant="info" className="btn m-2  ">
                       <i className="fas fa-edit fa-lg "></i>
                     </Button>
                   </LinkContainer>

@@ -21,7 +21,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 const ProductScreen = ({ match, history }) => {
   const [qty, setQty] = useState(1);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
 
   const dispatch = useDispatch();
@@ -80,9 +80,12 @@ const ProductScreen = ({ match, history }) => {
               <Image src={product.image} alt={product.name} fluid />
             </Col>
             <Col md={3}>
-              <ListGroup variant="flush">
+              <ListGroup
+                variant="flush"
+                className="  text-lg-start text-center "
+              >
                 <ListGroup.Item>
-                  <h3>{product.name}</h3>
+                  <h3 className=" pb-0 mb-0">{product.name}</h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Rating
@@ -90,8 +93,10 @@ const ProductScreen = ({ match, history }) => {
                     text={`${product.numReviews} reviews`}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item>Price: &#8377; {product.price} </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className="  text-lg-start text-center">
+                  Price: &#8377; {product.price}{" "}
+                </ListGroup.Item>
+                <ListGroup.Item className=" mb-2 pb-4">
                   Description: {product.description}{" "}
                 </ListGroup.Item>
               </ListGroup>
@@ -100,7 +105,7 @@ const ProductScreen = ({ match, history }) => {
               <Card>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
-                    <Row>
+                    <Row className=" p-3">
                       <Col>Price:</Col>
                       <Col>
                         <strong>&#8377; {product.price}</strong>
@@ -108,7 +113,7 @@ const ProductScreen = ({ match, history }) => {
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <Row>
+                    <Row className=" p-3">
                       <Col>Status:</Col>
                       <Col>
                         {product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
@@ -118,7 +123,7 @@ const ProductScreen = ({ match, history }) => {
 
                   {product.countInStock > 0 && (
                     <ListGroup.Item>
-                      <Row>
+                      <Row className=" p-3">
                         <Col>Qty</Col>
                         <Col>
                           <Form.Control
@@ -139,10 +144,10 @@ const ProductScreen = ({ match, history }) => {
                     </ListGroup.Item>
                   )}
 
-                  <ListGroup>
+                  <ListGroup className="  ">
                     <Button
                       onClick={addToCartHandler}
-                      className="btn-block"
+                      className="btn-block p-4  "
                       type="button"
                       disabled={product.countInStock === 0}
                     >
@@ -155,41 +160,68 @@ const ProductScreen = ({ match, history }) => {
           </Row>
           <Row>
             <Col md={6}>
-              <h2>Reviews</h2>
-              {product.reviews.length === 0 && <Message>No reviews</Message>}
-              <ListGroup variant="flush">
-                {product.reviews.map((review) => (
-                  <ListGroup.Item key={review._id}>
-                    <strong>{review.name}</strong>
-                    <Rating value={review.rating} />
-                    <p>{review.createdAt.substring(0, 10)}</p>
-                    <p>{review.comment}</p>
+              <h2
+                style={{ fontSize: "1.8rem" }}
+                className="pt-3 mt-4 text-decoration-none"
+              >
+                Customers Review
+              </h2>
+              {product.reviews.length === 0 && (
+                <Message variant="info">No reviews</Message>
+              )}
+              <ListGroup
+                variant="flush"
+                className="  text-lg-start text-center "
+              >
+                {product.reviews.map((review, index) => (
+                  <ListGroup.Item
+                    className={`${index === 0 ? "pt-3" : ""}`}
+                    key={review._id}
+                  >
+                    <div
+                      style={{ fontSize: "1.2rem" }}
+                      className={`${index === 0 ? "mt-3" : ""} mb-2`}
+                    >
+                      {review.name}
+                    </div>
+                    <Rating value={review.rating} className="" />
+                    <span
+                      className="pb-0 mb-0 text-secondary "
+                      style={{ fontSize: "0.7rem" }}
+                    >
+                      {review.createdAt.substring(0, 10)}
+                    </span>
+                    <p className="pt-0 mt-3 text-info ">{review.comment}</p>
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>
-                  <h2>Write a Customer Review</h2>
+                  <h2 className=" text-center ">Write a Customer Review</h2>
                   {errorProductReview && (
                     <Message variant="danger">{errorProductReview}</Message>
                   )}
                   {userInfo ? (
                     <Form onSubmit={submitHandler}>
                       <Form.Group controlId="rating">
-                        <Form.Label>Rating</Form.Label>
+                        <Form.Label className="text-secondary">
+                          Rating
+                        </Form.Label>
                         <Form.Control
+                          className="p-3"
                           as="select"
                           value={rating}
                           onChange={(e) => setRating(e.target.value)}
                         >
-                          <option value="">Select ...</option>
-                          <option value="1">1 - Poor</option>
-                          <option value="2">2 - Fair</option>
-                          <option value="3">3 - Good</option>
-                          <option value="4">4 - Very Good</option>
                           <option value="5">5 - Excellent</option>
+                          <option value="4">4 - Very Good</option>
+                          <option value="3">3 - Good</option>
+                          <option value="2">2 - Fair</option>
+                          <option value="1">1 - Poor</option>
                         </Form.Control>
                       </Form.Group>
                       <Form.Group controlId="comment">
-                        <Form.Label>Comment</Form.Label>
+                        <Form.Label className="mt-3 text-secondary">
+                          Comment
+                        </Form.Label>
                         <Form.Control
                           as="textarea"
                           row="3"
@@ -197,15 +229,31 @@ const ProductScreen = ({ match, history }) => {
                           onChange={(e) => setComment(e.target.value)}
                         ></Form.Control>
                       </Form.Group>
-                      <Button type="submit" variant="primary">
+                      <Button
+                        type="submit"
+                        variant="primary"
+                        className=" mt-4 p-3 w-100 "
+                      >
                         Submit
                       </Button>
                     </Form>
                   ) : (
-                    <Message>
-                      Please <Link to="/login">sign in</Link> or{" "}
-                      <Link to="/register">register with us</Link> to add a
-                      review
+                    <Message variant="info">
+                      Please{" "}
+                      <Link
+                        to="/login"
+                        className="text-decoration-none text-white-50 "
+                      >
+                        Sign In
+                      </Link>{" "}
+                      or{" "}
+                      <Link
+                        to="/register"
+                        className="text-decoration-none text-white-50 "
+                      >
+                        Register with Us
+                      </Link>{" "}
+                      to add a review
                     </Message>
                   )}
                 </ListGroup.Item>

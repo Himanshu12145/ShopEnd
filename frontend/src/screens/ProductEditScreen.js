@@ -98,11 +98,11 @@ const ProductEditScreen = ({ match, history }) => {
 
   return (
     <>
-      <Link to="/admin/productlist" className="btn btn-light my-3">
+      <Link to="/admin/productlist" className=" btn btn-primary my-3">
         Go Back
       </Link>
       <FormContainer>
-        <h1>Edit Product</h1>
+        <h1 className="text-center mt-3">Edit Product</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
 
@@ -113,8 +113,9 @@ const ProductEditScreen = ({ match, history }) => {
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="name">
-              <Form.Label>Name</Form.Label>
+              <Form.Label className="mb-4">Name</Form.Label>
               <Form.Control
+                className="mb-3 p-3"
                 type="name"
                 placeholder="Enter Name"
                 value={name}
@@ -122,8 +123,9 @@ const ProductEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId="price">
-              <Form.Label>Price </Form.Label>
+              <Form.Label className="mb-4">Price </Form.Label>
               <Form.Control
+                className="mb-3 p-3"
                 type="number"
                 placeholder="Enter Price"
                 value={price}
@@ -131,16 +133,26 @@ const ProductEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId="image">
-              <Form.Label>Image</Form.Label>
+              <Form.Label className="mb-4">Image</Form.Label>
               <Form.Control
+                className="mb-3 p-3"
                 type="text"
                 placeholder="Enter Image Url"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               ></Form.Control>
+              {/* <input
+                class="form-control mb-3 p-3"
+                type="file"
+                id="formFile"
+                onChange={uploadFileHandler}
+              /> */}
+
               <Form.File
-                id="image-file"
-                label="Choose File"
+                className="form-control mb-3 p-3 "
+                type="file"
+                id="formFile"
+                variant="primary"
                 custom
                 onChange={uploadFileHandler}
               ></Form.File>
@@ -148,8 +160,9 @@ const ProductEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId="brand">
-              <Form.Label>Brand</Form.Label>
+              <Form.Label className="mb-4">Brand</Form.Label>
               <Form.Control
+                className="mb-3 p-3"
                 type="text"
                 placeholder="Enter Brand"
                 value={brand}
@@ -158,8 +171,9 @@ const ProductEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId="countInStock">
-              <Form.Label>Count In Stock</Form.Label>
+              <Form.Label className="mb-4">Count In Stock</Form.Label>
               <Form.Control
+                className="mb-3 p-3"
                 type="number"
                 placeholder="Enter CountInStock"
                 value={countInStock}
@@ -168,8 +182,9 @@ const ProductEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId="category">
-              <Form.Label>Category</Form.Label>
+              <Form.Label className="mb-4">Category</Form.Label>
               <Form.Control
+                className="mb-3 p-3"
                 type="text"
                 placeholder="Enter Category"
                 value={category}
@@ -178,16 +193,22 @@ const ProductEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId="description">
-              <Form.Label>Description</Form.Label>
+              <Form.Label className="mb-4">Description</Form.Label>
               <Form.Control
-                type="text"
+                className="mb-3 p-3 "
+                as="textarea"
+                row="3"
                 placeholder="Enter Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
-            <Button type="submit" variant="primary">
+            <Button
+              type="submit"
+              variant="primary"
+              className=" mt-4 p-3 w-100  "
+            >
               Update
             </Button>
           </Form>
