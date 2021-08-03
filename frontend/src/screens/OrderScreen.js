@@ -154,7 +154,9 @@ const OrderScreen = ({ match, history }) => {
               )}
             </ListGroup.Item>
             <ListGroup.Item>
-              <h1 className="   text-secondary ">Order Items</h1>
+              <h1 className="   text-secondary   text-sm-start text-center">
+                Order Items
+              </h1>
               {order.orderItems.length === 0 ? (
                 <Message>Order is Empty</Message>
               ) : (

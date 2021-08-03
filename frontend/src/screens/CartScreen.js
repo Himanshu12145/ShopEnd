@@ -38,7 +38,7 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
-        <h1>Shopping Cart</h1>
+        <h1 className="text-secondary">Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
             Your Cart is empty <Link to="/">Go Back</Link>
@@ -101,10 +101,13 @@ const CartScreen = ({ match, location, history }) => {
         <Card>
           <ListGroup variant="flush">
             <ListGroup.Item className="text-info">
-              <h2 className="text-white-50 ">
+              <Col
+                style={{ fontSize: "2rem" }}
+                className=" text-decoration-none text-secondary p-3 "
+              >
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 items
-              </h2>
+              </Col>
               &#8377;{" "}
               {cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
@@ -113,7 +116,7 @@ const CartScreen = ({ match, location, history }) => {
             <ListGroup.Item>
               <Button
                 type="button"
-                className="btn-block "
+                className=" w-100 p-4 mt-3 "
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >
