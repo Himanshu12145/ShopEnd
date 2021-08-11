@@ -68,7 +68,13 @@ const ProductListScreen = ({ history, match }) => {
     }
   };
   const createProductHandler = () => {
-    dispatch(createProduct());
+    if (
+      window.confirm(
+        "Warning !!! A new product with Default values will be added to the Product's Page you need to edit those values . "
+      )
+    ) {
+      dispatch(createProduct());
+    }
   };
 
   return (

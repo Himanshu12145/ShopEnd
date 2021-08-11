@@ -238,7 +238,7 @@ const ProductScreen = ({ match, history }) => {
                       </Button>
                     </Form>
                   ) : (
-                    <Message variant="info">
+                    <Message variant="primary">
                       Please{" "}
                       <Link
                         to="/login"
