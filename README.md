@@ -1,11 +1,11 @@
 # ShopEnd
 
 
-MERN stack based ecommerce e-kart [ShopEnd](https://shopendapp.herokuapp.com/) 
+MERN stack based ecommerce e-kart [ShopEnd](https://shopenddark.herokuapp.com/) 
 
 
 
-Deployed at Heroku URL-> https://shopendapp.herokuapp.com/
+Deployed at Heroku URL-> https://shopenddark.herokuapp.com/
 
 
 
