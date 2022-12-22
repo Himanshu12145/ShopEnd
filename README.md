@@ -5,7 +5,8 @@ MERN stack based ecommerce e-kart [ShopEnd](https://shopenddark.herokuapp.com/)
 
 
 
-Deployed at Heroku URL-> https://shopenddark.herokuapp.com/
+ URL-> https://shopenddark-com.onrender.com/
+ server->https://shopenddark-herokuapp-com.onrender.com
 
 
 
