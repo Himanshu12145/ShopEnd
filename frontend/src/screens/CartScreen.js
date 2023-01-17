@@ -38,7 +38,7 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
-        <h1 className="text-secondary">Shopping Cart</h1>
+        <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
             Your Cart is empty <Link to="/">Go Back</Link>
@@ -49,22 +49,13 @@ const CartScreen = ({ match, location, history }) => {
               <ListGroup.Item key={item.product}>
                 <Row>
                   <Col md={2}>
-                    <Link to={`/product/${item.product}`}>
-                      <Image src={item.image} alt={item.name} fluid rounded />
-                    </Link>
+                    <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
 
                   <Col md={3}>
-                    <Link
-                      className="text-decoration-none text-white "
-                      to={`/product/${item.product}`}
-                    >
-                      {item.name}
-                    </Link>
+                    <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
-                  <Col md={2} className="text-info">
-                    &#8377; {item.price}
-                  </Col>
+                  <Col md={2}>&#8377; {item.price}</Col>
                   <Col md={2}>
                     <Form.Control
                       as="select"
@@ -85,7 +76,7 @@ const CartScreen = ({ match, location, history }) => {
                   <Col md={2}>
                     <Button
                       type="button"
-                      variant="primary"
+                      variants="light"
                       onClick={() => removeFromCartHandler(item.product)}
                     >
                       <i className="fas fa-trash"></i>
@@ -100,14 +91,11 @@ const CartScreen = ({ match, location, history }) => {
       <Col md={4}>
         <Card>
           <ListGroup variant="flush">
-            <ListGroup.Item className="text-info">
-              <Col
-                style={{ fontSize: "2rem" }}
-                className=" text-decoration-none text-secondary p-3 "
-              >
+            <ListGroup.Item>
+              <h2>
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 items
-              </Col>
+              </h2>
               &#8377;{" "}
               {cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
@@ -116,7 +104,7 @@ const CartScreen = ({ match, location, history }) => {
             <ListGroup.Item>
               <Button
                 type="button"
-                className=" w-100 p-4 mt-3 "
+                className="btn-block"
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >

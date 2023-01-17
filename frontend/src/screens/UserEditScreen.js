@@ -54,11 +54,11 @@ const UserEditScreen = ({ match, history }) => {
 
   return (
     <>
-      <Link to="/admin/userlist" className="btn btn-primary my-3 ">
+      <Link to="/admin/userlist" className="btn btn-light my-3">
         Go Back
       </Link>
       <FormContainer>
-        <h1 className="text-center">Edit User</h1>
+        <h1>Edit User</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading ? (
@@ -68,9 +68,8 @@ const UserEditScreen = ({ match, history }) => {
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="name">
-              <Form.Label className="mb-4">Name</Form.Label>
+              <Form.Label>Name</Form.Label>
               <Form.Control
-                className="mb-3 p-3"
                 type="name"
                 placeholder="Enter Name"
                 value={name}
@@ -78,10 +77,9 @@ const UserEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId="email">
-              <Form.Label className="mb-4">Email Address</Form.Label>
+              <Form.Label>Email Address</Form.Label>
               <Form.Control
                 type="email"
-                className="mb-3 p-3"
                 placeholder="Enter email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -89,18 +87,13 @@ const UserEditScreen = ({ match, history }) => {
             </Form.Group>
             <Form.Group controlId="isadmin">
               <Form.Check
-                className=""
                 type="checkbox"
                 label="Is Admin"
                 checked={isAdmin}
                 onChange={(e) => setIsAdmin(e.target.checked)}
               ></Form.Check>
             </Form.Group>
-            <Button
-              type="submit"
-              variant="primary"
-              className=" mt-4 p-3 w-100 "
-            >
+            <Button type="submit" variant="primary">
               Update
             </Button>
           </Form>

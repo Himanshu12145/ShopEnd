@@ -35,71 +35,50 @@ const UserListScreen = ({ history }) => {
 
   return (
     <>
-      <h1 style={{ fontSize: "2rem" }} className="mt-0 pt-0 ">
-        Users
-      </h1>
+      <h1>Users</h1>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Table hover responsive className="table-sm">
+        <Table striped bordered hover responsive className="table-sm">
           <thead>
-            <tr style={{ fontSize: "1.4rem" }}>
-              <th className="  pb-4 text-secondary">ID</th>
-              <th className="  pb-4 text-secondary ">NAME</th>
-              <th className="  pb-4 text-secondary ">EMAIL</th>
-              <th className="  pb-4 text-secondary ">ADMIN</th>
-              <th className="  pb-4 text-secondary "></th>
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>EMAIL</th>
+              <th>ADMIN</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr className=" text-light " key={index}>
-                <td className="  ">{user._id}</td>
-                <td className=" text-info ">{user.name}</td>
-                <td className="  ">
+              <tr key={index}>
+                <td>{user._id}</td>
+                <td>{user.name}</td>
+                <td>
                   {" "}
-                  <a
-                    className="text-decoration-none text-light"
-                    href={`mailto:${user.email}`}
-                  >
-                    {user.email}
-                  </a>
+                  <a href={`mailto:${user.email}`}>{user.email}</a>
                 </td>
-                <td className="  ">
+                <td>
                   {user.isAdmin ? (
-                    <i
-                      className="fas fa-check fa-lg     "
-                      style={{ color: "green" }}
-                    ></i>
+                    <i className="fas fa-check" style={{ color: "green" }}></i>
                   ) : (
-                    <i
-                      className="fas fa-times fa-lg"
-                      style={{ color: "red" }}
-                    ></i>
+                    <i className="fas fa-times" style={{ color: "red" }}></i>
                   )}
                 </td>
-                <td className="   ">
-                  <LinkContainer
-                    // style={{
-                    //   marginLeft: "10px",
-                    //   marginRight: "10px",
-                    // }}
-                    to={`/admin/user/${user._id}/edit`}
-                    className=" "
-                  >
-                    <Button variant="info" className="btn m-2  ">
-                      <i className="fas fa-edit fa-lg "></i>
+                <td>
+                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
+                    <Button variant="light" className="btn-sm">
+                      <i className="fas fa-edit"></i>
                     </Button>
                   </LinkContainer>
                   <Button
-                    // style={{ marginLeft: "" }}
                     variant="danger"
-                    className="btn m-2 ps-3"
+                    className="btn-sm"
                     onClick={() => deleteHandler(user._id)}
                   >
-                    <i className="fas fa-trash fa-lg "></i>
+                    <i className="fas fa-trash"></i>
                   </Button>
                 </td>
               </tr>

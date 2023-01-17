@@ -61,26 +61,20 @@ const PlaceOrderScreen = ({ history }) => {
         <Col md={8}>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2
-                className="text-secondary pb-3 "
-                style={{ fontSize: "1.6rem" }}
-              >
-                Shipping To
-              </h2>
-              <p className="text-light">
-                <strong className="text-info m-sm-5">Address: </strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city},{" "}
-                {cart.shippingAddress.postalCode},{" "}
+              <h2>Shipping</h2>
+              <p>
+                <strong>Address: </strong> {cart.shippingAddress.address},{" "}
+                {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},{" "}
                 {cart.shippingAddress.country},
               </p>
             </ListGroup.Item>
-            <ListGroup.Item className="text-light">
-              <h2 className="text-secondary pt-0 mt-0">Payment Method</h2>
-              <strong className="text-info m-sm-5">Method: </strong>
+            <ListGroup.Item>
+              <h2>Payment Method</h2>
+              <strong>Method: </strong>
               {cart.paymentMethod}
             </ListGroup.Item>
             <ListGroup.Item>
-              <h2 className="text-secondary">Order Items</h2>
+              <h2>Order Items</h2>
               {cart.cartItems.length === 0 ? (
                 <Message>Your Cart is Empty</Message>
               ) : (
@@ -97,14 +91,11 @@ const PlaceOrderScreen = ({ history }) => {
                           />
                         </Col>
                         <Col>
-                          <Link
-                            to={`/product/${item.product}`}
-                            className="text-decoration-none text-info"
-                          >
+                          <Link to={`/product/${item.product}`}>
                             {item.name}
                           </Link>
                         </Col>
-                        <Col md={4} className="text-light">
+                        <Col md={4}>
                           {item.qty} x &#8377; {item.price} = &#8377;{" "}
                           {item.qty * item.price}
                         </Col>
@@ -120,34 +111,29 @@ const PlaceOrderScreen = ({ history }) => {
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <Col
-                  className="text-secondary p-3"
-                  style={{ fontSize: "1.6rem" }}
-                >
-                  Order Summary{" "}
-                </Col>
+                <h2>Order Summary </h2>
               </ListGroup.Item>
-              <ListGroup.Item className="text-light">
+              <ListGroup.Item>
                 <Row>
-                  <Col className="text-info">Items</Col>
+                  <Col>Items</Col>
                   <Col> &#8377; {cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item className="text-light">
+              <ListGroup.Item>
                 <Row>
-                  <Col className="text-info">Shipping</Col>
+                  <Col>Shipping</Col>
                   <Col> &#8377; {cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item className="text-light">
+              <ListGroup.Item>
                 <Row>
-                  <Col className="text-info">Tax </Col>
+                  <Col>Tax </Col>
                   <Col> &#8377; {cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item className="text-light">
+              <ListGroup.Item>
                 <Row>
-                  <Col className="text-info">Total </Col>
+                  <Col>Total </Col>
                   <Col>&#8377; {cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
@@ -157,7 +143,7 @@ const PlaceOrderScreen = ({ history }) => {
               <ListGroup.Item>
                 <Button
                   type="button"
-                  className="w-100 p-3 mb-3 "
+                  className="btn-block"
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
                 >

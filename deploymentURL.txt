@@ -1,7 +1,0 @@
-Hope you enjoy visiting it !!!!
-
-deployment URL == https://shopendapp.herokuapp.com/
-
-updating command after repo addition --
-
- git push heroku changed_UI:main

@@ -62,115 +62,97 @@ const ProfileScreen = ({ history }) => {
   return (
     <Row>
       <Col md={3}>
-        <h1 className="  text-lg-start text-center ">User Profile</h1>
+        <h2>User Profile</h2>
         {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}
         {success && (
           <Message variant="success">Profile Updated Successfully</Message>
         )}
         {loading && <Loader />}
-        <Form onSubmit={submitHandler} className="text-secondary">
+        <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
-            <Form.Label className="pb-3">Name</Form.Label>
+            <Form.Label>Name</Form.Label>
             <Form.Control
               type="name"
               placeholder="Enter Name"
-              className="mb-3 form-control-lg"
               value={name}
               onChange={(e) => setName(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="email">
-            <Form.Label className=" pt-3 pb-3">Email Address</Form.Label>
+            <Form.Label>Email Address</Form.Label>
             <Form.Control
               type="email"
               placeholder="Enter email"
               value={email}
-              className="mb-3 form-control-lg"
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="password">
-            <Form.Label className="pt-3 pb-3"> Password </Form.Label>
+            <Form.Label> Password </Form.Label>
             <Form.Control
               type="password"
               placeholder="Enter password"
               value={password}
-              className="mb-3 form-control-lg"
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="confirmPassword">
-            <Form.Label className="pt-3 pb-3"> Confirm Password </Form.Label>
+            <Form.Label> Confirm Password </Form.Label>
             <Form.Control
               type="password"
               placeholder="Confirm password"
-              className="mb-4 form-control-lg"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
-          <Button
-            type="submit"
-            variant="primary"
-            className=" w-100 p-3 pt-3 mt-3"
-          >
+          <Button type="submit" variant="primary">
             Update
           </Button>
         </Form>
       </Col>
       <Col md={9}>
-        <h1 className="  text-lg-start text-center mt-lg-0 mt-3 mb-3 ">
-          My Orders
-        </h1>
+        <h2>My Orders</h2>
         {loadingOrders ? (
           <Loader />
         ) : errorOrders ? (
           <Message variant="danger">{errorOrders}</Message>
         ) : (
           <Table striped bordered hover responsive className="table-sm">
-            <thead className="">
+            <thead>
               <tr>
-                <th className=" pb-4 text-secondary  ">ID</th>
-                <th className=" pb-4 text-secondary  ">DATE</th>
-                <th className=" pb-4 text-secondary  ">
-                  TOTAL &#40;&#8377;&#41;{" "}
-                </th>
-                <th className=" pb-4 text-secondary  ">PAID</th>
-                <th className=" pb-4 text-secondary  ">DELIVERED</th>
+                <th>ID</th>
+                <th>DATE</th>
+                <th>TOTAL &#40;&#8377;&#41; </th>
+                <th>PAID</th>
+                <th>DELIVERED</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               {orders.map((order) => (
-                <tr key={order._id} className=" text-info ">
-                  <td className=" text-light ">{order._id}</td>
+                <tr key={order._id}>
+                  <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
-                  <td className=" text-light ">{order.totalPrice}</td>
+                  <td>{order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
                       order.paidAt.substring(0, 10)
                     ) : (
-                      <i
-                        className="fas fa-times fa-lg"
-                        style={{ color: "red" }}
-                      ></i>
+                      <i className="fas fa-times" style={{ color: "red" }}></i>
                     )}
                   </td>
-                  <td className=" text-light ">
+                  <td>
                     {order.isDelivered ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (
-                      <i
-                        className="fas fa-times fa-lg"
-                        style={{ color: "red" }}
-                      ></i>
+                      <i className="fas fa-times" style={{ color: "red" }}></i>
                     )}
                   </td>
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
-                      <Button className="btn   p-2 " variant="primary">
+                      <Button className="btn-sm" variant="light">
                         Details
                       </Button>
                     </LinkContainer>

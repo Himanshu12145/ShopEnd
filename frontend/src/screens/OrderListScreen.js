@@ -25,56 +25,48 @@ const OrderListScreen = ({ history }) => {
 
   return (
     <>
-      <h1 className="mt-0 pt-0 " style={{ fontSize: "2rem" }}>
-        Orders
-      </h1>
+      <h1>Orders</h1>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Table hover responsive className="table-sm">
+        <Table striped bordered hover responsive className="table-sm">
           <thead>
-            <tr style={{ fontSize: "1.4rem" }}>
-              <th className="  pb-4 text-secondary ">ID</th>
-              <th className="  pb-4 text-secondary">USER</th>
-              <th className="  pb-4 text-secondary">DATE</th>
-              <th className="  pb-4 text-secondary">TOTAL</th>
-              <th className="  pb-4 text-secondary">PAID</th>
-              <th className="  pb-4 text-secondary">DELIVERED</th>
+            <tr>
+              <th>ID</th>
+              <th>USER</th>
+              <th>DATE</th>
+              <th>TOTAL</th>
+              <th>PAID</th>
+              <th>DELIVERED</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             {orders.map((order, index) => (
-              <tr className=" text-light " key={index}>
+              <tr key={index}>
                 <td>{order._id}</td>
-                <td className=" text-info ">{order.user && order.user.name}</td>
+                <td>{order.user && order.user.name}</td>
                 <td> {order.createdAt.substring(0, 10)}</td>
-                <td className=" text-info "> &#8377; {order.totalPrice}</td>
+                <td> &#8377; {order.totalPrice}</td>
                 <td>
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
                   ) : (
-                    <i
-                      className="fas fa-times fa-lg"
-                      style={{ color: "red" }}
-                    ></i>
+                    <i className="fas fa-times" style={{ color: "red" }}></i>
                   )}
                 </td>
-                <td className=" text-info ">
+                <td>
                   {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
-                    <i
-                      className="fas fa-times fa-lg"
-                      style={{ color: "red" }}
-                    ></i>
+                    <i className="fas fa-times" style={{ color: "red" }}></i>
                   )}
                 </td>
                 <td>
                   <LinkContainer to={`/order/${order._id}`}>
-                    <Button variant="" className="btn btn-primary  p-2">
+                    <Button variant="light" className="btn-sm">
                       Details
                     </Button>
                   </LinkContainer>

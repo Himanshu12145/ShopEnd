@@ -38,57 +38,12 @@ const RegisterScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
-      <h1 className="text-secondary mt-3 text-center text-lg-start">Sign Up</h1>
+      <h1>Sign Up</h1>
       {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
-        <div className="form-floating mb-4 text-info mt-3">
-          <input
-            type="text"
-            className="form-control"
-            id="floatingInput"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="name@example.com"
-          />
-          <label htmlFor="floatingInput">Enter Name</label>
-        </div>
-        <div className="form-floating mb-4 text-info mt-3">
-          <input
-            type="email"
-            className="form-control"
-            id="floatingInput1"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="name@example.com"
-          />
-          <label htmlFor="floatingInput1">Email address</label>
-        </div>
-        <div className="form-floating text-info mb-4">
-          <input
-            type="password"
-            className="form-control"
-            id="floatingPassword"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          />
-          <label htmlFor="floatingPassword">Password</label>
-        </div>
-        <div className="form-floating text-info mb-4">
-          <input
-            type="password"
-            className="form-control"
-            id="floatingPassword1"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Password"
-          />
-          <label htmlFor="floatingPassword1"> Confirm Password</label>
-        </div>
-
-        {/* <Form.Group controlId="name">
+        <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>
           <Form.Control
             type="name"
@@ -123,21 +78,18 @@ const RegisterScreen = ({ location, history }) => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
-        </Form.Group> */}
+        </Form.Group>
 
-        <Button type="submit" variant="primary" className="w-100 p-3">
+        <Button type="submit" variant="primary">
           Register
         </Button>
       </Form>
 
-      <Row className="py-3 text-info  text-center text-lg-start">
+      <Row className="py-3">
         <Col>
           Have an Account ?{" "}
-          <Link
-            to={redirect ? `/login?redirect=${redirect}` : `/login`}
-            className="text-decoration-none text-secondary"
-          >
-            Login Here
+          <Link to={redirect ? `/login?redirect=${redirect}` : `/login`}>
+            Login
           </Link>
         </Col>
       </Row>

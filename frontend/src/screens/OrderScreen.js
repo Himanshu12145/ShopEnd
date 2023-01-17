@@ -100,63 +100,48 @@ const OrderScreen = ({ match, history }) => {
     <Message variant="danger">{error}</Message>
   ) : (
     <>
+      <h1>Order #{order._id}</h1>
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h1 className="   text-secondary ">Shipping Details</h1>
+              <h2>Shipping</h2>
 
-              <p className="   text-light ">
-                <strong className="   text-info ">Name: </strong>
-                {"   "}
-                {order.user.name}
+              <p>
+                <strong>Name: </strong> {order.user.name}
               </p>
-              <p className="   text-light">
-                <strong className="   text-info ">Email: </strong>{" "}
-                <a
-                  className="   text-decoration-none  "
-                  href={`mailto:${order.user.email}`}
-                >
-                  {order.user.email}
-                </a>
-              </p>
-              <p className="   text-info ">
-                OrderID :{" "}
-                <span className="   text-light ">
-                  {"  "} #{order._id}
-                </span>
+              <p>
+                <strong>Email: </strong>{" "}
+                <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
               </p>
 
-              <p className="   text-light ">
-                <strong className="   text-info ">Address: </strong>{" "}
-                {order.shippingAddress.address}, {order.shippingAddress.city},{" "}
-                {order.shippingAddress.postalCode},{" "}
-                {order.shippingAddress.country},
+              <p>
+                <strong>Address: </strong> {order.shippingAddress.address},{" "}
+                {order.shippingAddress.city}, {order.shippingAddress.postalCode}
+                , {order.shippingAddress.country},
               </p>
               {order.isDelivered ? (
-                <Message variant="primary">
+                <Message variant="success">
                   Delivered on {order.deliveredAt}
                 </Message>
               ) : (
-                <Message variant="primary">Not Delivered</Message>
+                <Message variant="danger">Not Delivered</Message>
               )}
             </ListGroup.Item>
             <ListGroup.Item>
-              <h1 className="   text-secondary ">Payment Method</h1>
-              <p className="   text-light ">
-                <strong className="   text-info ">Method: </strong>
+              <h2>Payment Method</h2>
+              <p>
+                <strong>Method: </strong>
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Message variant="primary">Paid on {order.paidAt}</Message>
+                <Message variant="success">Paid on {order.paidAt}</Message>
               ) : (
-                <Message variant="primary">Not Paid</Message>
+                <Message variant="danger">Not Paid</Message>
               )}
             </ListGroup.Item>
             <ListGroup.Item>
-              <h1 className="   text-secondary   text-sm-start text-center">
-                Order Items
-              </h1>
+              <h2>Order Items</h2>
               {order.orderItems.length === 0 ? (
                 <Message>Order is Empty</Message>
               ) : (
@@ -173,14 +158,11 @@ const OrderScreen = ({ match, history }) => {
                           />
                         </Col>
                         <Col>
-                          <Link
-                            to={`/product/${item.product}`}
-                            className="   text-decoration-none text-info "
-                          >
+                          <Link to={`/product/${item.product}`}>
                             {item.name}
                           </Link>
                         </Col>
-                        <Col md={4} className="   text-light ">
+                        <Col md={4}>
                           {item.qty} x &#8377; {item.price} = &#8377;{" "}
                           {item.qty * item.price}
                         </Col>
@@ -193,48 +175,33 @@ const OrderScreen = ({ match, history }) => {
           </ListGroup>
         </Col>
         <Col md={4}>
-          <Card />
-          <ListGroup.Item>
-            <h1 className="   text-decoration-none text-secondary ">
-              Order Summary{" "}
-            </h1>
-          </ListGroup.Item>
-          <Card />
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
+                <h2>Order Summary </h2>
+              </ListGroup.Item>
+              <ListGroup.Item>
                 <Row>
-                  <Col className="   text-info ">Items</Col>
-                  <Col className="   text-light ">
-                    {" "}
-                    &#8377; {order.itemsPrice}
-                  </Col>
+                  <Col>Items</Col>
+                  <Col> &#8377; {order.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col className="   text-info ">Shipping</Col>
-                  <Col className="   text-light ">
-                    {" "}
-                    &#8377; {order.shippingPrice}
-                  </Col>
+                  <Col>Shipping</Col>
+                  <Col> &#8377; {order.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col className="   text-info ">Tax </Col>
-                  <Col className="   text-light ">
-                    {" "}
-                    &#8377; {order.taxPrice}
-                  </Col>
+                  <Col>Tax </Col>
+                  <Col> &#8377; {order.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col className="   text-info ">Total </Col>
-                  <Col className="   text-light pb-3 ">
-                    &#8377; {order.totalPrice}
-                  </Col>
+                  <Col>Total </Col>
+                  <Col>&#8377; {order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               {!order.isPaid && (
@@ -244,8 +211,6 @@ const OrderScreen = ({ match, history }) => {
                     <Loader />
                   ) : (
                     <PayPalButton
-                      style={{ color: "blue" }}
-                      className="     "
                       amount={order.totalPrice}
                       onSuccess={successPaymentHandler}
                     />
@@ -261,7 +226,7 @@ const OrderScreen = ({ match, history }) => {
                   <ListGroup.Item>
                     <Button
                       type="button"
-                      className="btn btn-block w-100 p-4"
+                      className="btn btn-block"
                       onClick={deliverHandler}
                     >
                       Mark As Delivered
