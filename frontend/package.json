@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy": "https://35.160.120.126:5000",
+  "proxy": "https://shopenddark-herokuapp-com.onrender.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
