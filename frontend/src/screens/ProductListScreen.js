@@ -68,18 +68,35 @@ const ProductListScreen = ({ history, match }) => {
     }
   };
   const createProductHandler = () => {
-    dispatch(createProduct());
+    if (
+      window.confirm(
+        "Warning !!! A new product with Default values will be added to the Product's Page you need to edit those values . "
+      )
+    ) {
+      dispatch(createProduct());
+    }
   };
 
   return (
     <>
-      <Row className="align-items-center">
-        <Col>
-          <h1>Products</h1>
+      <Row className="  ">
+        <Col
+          className=""
+          // style={{ marginRight: "340px" }}
+        >
+          <h1 className=" " style={{ fontSize: "2rem" }}>
+            Products
+          </h1>
         </Col>
-        <Col className="text-right">
-          <Button className="my-3" onClick={createProductHandler}>
-            <i className="fas fa-plus"></i> Create Product
+        <Col
+          className="text-right"
+          // style={{ marginLeft: "200px" }}
+        >
+          <Button
+            className="my-3 btn float-end "
+            onClick={createProductHandler}
+          >
+            <i className="fas fa-plus fa-lg"> </i> Create Product
           </Button>
         </Col>
       </Row>
@@ -95,35 +112,35 @@ const ProductListScreen = ({ history, match }) => {
         <>
           <Table striped bordered hover responsive className="table-sm">
             <thead>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
-                <th>BRAND</th>
+              <tr style={{ fontSize: "1.4rem" }}>
+                <th className=" pt-2  pb-3 text-secondary">ID</th>
+                <th className="  pt-2 pb-3 text-secondary">NAME</th>
+                <th className=" pt-2  pb-3 text-secondary">PRICE</th>
+                <th className=" pt-2  pb-3 text-secondary">CATEGORY</th>
+                <th className="  pt-2 pb-3 text-secondary">BRAND</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               {products.map((product, index) => (
                 <tr key={index}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td> &#8377;{product.price}</td>
-                  <td>{product.category}</td>
-                  <td>{product.brand}</td>
+                  <td className="text-light">{product._id}</td>
+                  <td className="text-info">{product.name}</td>
+                  <td className="text-light"> &#8377;{product.price}</td>
+                  <td className="text-info"> {product.category}</td>
+                  <td className="text-light">{product.brand}</td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                      <Button variant="light" className="btn-sm">
-                        <i className="fas fa-edit"></i>
+                      <Button variant="info" className="btn m-2  ">
+                        <i className="fas fa-edit fa-lg"></i>
                       </Button>
                     </LinkContainer>
                     <Button
                       variant="danger"
-                      className="btn-sm"
+                      className="btn m-2 ps-3"
                       onClick={() => deleteHandler(product._id)}
                     >
-                      <i className="fas fa-trash"></i>
+                      <i className="fas fa-trash fa-lg"></i>
                     </Button>
                   </td>
                 </tr>

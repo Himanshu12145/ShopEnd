@@ -20,10 +20,14 @@ import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 const App = () => {
+  // let darkMode = true;
+
+  // const toggleDarkMode = () => setDarkMode(darkMode ? false : true);
+
   return (
     <Router>
       <Header />
-      <main className="py-4">
+      <main className="py-4 ">
         <Container>
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/shipping" component={ShippingScreen} />
