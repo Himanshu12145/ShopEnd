@@ -31,22 +31,22 @@ const App = () => {
         <Container>
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/shipping" component={ShippingScreen} />
-          <Route path="/placeorder" component={PlaceOrderScreen} />
+          <Route path="https://shopenddark-herokuapp-com.onrender.com/placeorder" component={PlaceOrderScreen} />
           <Route path="/payment" component={PaymentScreen} />
           <Route path="/login" component={LoginScreen} />
-          <Route path="/register" component={RegisterScreen} />
-          <Route path="/profile" component={ProfileScreen} />
-          <Route path="/product/:id" component={ProductScreen} />
-          <Route path="/cart/:id?" component={CartScreen} />
+          <Route path="https://shopenddark-herokuapp-com.onrender.com/register" component={RegisterScreen} />
+          <Route path="https://shopenddark-herokuapp-com.onrender.com/profile" component={ProfileScreen} />
+          <Route path="https://shopenddark-herokuapp-com.onrender.com/product/:id" component={ProductScreen} />
+          <Route path="https://shopenddark-herokuapp-com.onrender.com/cart/:id?" component={CartScreen} />
           <Route path="/admin/userlist" component={UserListScreen} />
           <Route path="/admin/user/:id/edit" component={UserEditScreen} />
           <Route
-            path="/admin/productlist"
+            path="https://shopenddark-herokuapp-com.onrender.com/admin/productlist"
             component={ProductListScreen}
             exact
           />
           <Route
-            path="/admin/productlist/:pageNumber"
+            path="https://shopenddark-herokuapp-com.onrender.com/admin/productlist/:pageNumber"
             component={ProductListScreen}
             exact
           />
