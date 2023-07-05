@@ -1,12 +1,12 @@
 # ShopEnd
 
 
-MERN stack based ecommerce e-kart [ShopEnd](https://shopenddark.herokuapp.com/) 
+MERN stack based ecommerce e-kart [ShopEnd](https://shopend.onrender.com/) 
 
 
 
- URL-> https://shopenddark-com.onrender.com/
- server->https://shopenddark-herokuapp-com.onrender.com
+ URL-> https://shopend.onrender.com/
+ server->https://shopend.onrender.com/
 
 
 
